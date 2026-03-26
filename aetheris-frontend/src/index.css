@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --bg-color: #111116;
+  --bg-gradient: radial-gradient(circle at 50% 30%, #1a1b24 0%, #111116 100%);
+  --accent-gold: #f6b15e;
+  --accent-red: #ff5b71;
+  --accent-blue: #7180ff;
+  --text-primary: #ffffff;
+  --text-secondary: #90909c;
+  --nav-bg: #0d0e12;
+  --card-bg: #1c1d29;
+
+  --font-serif: 'Libre Baskerville', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background: var(--bg-gradient);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-gold);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+html {
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+button, a, input, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+button:focus, a:focus, input:focus {
+  outline: none;
+}
+
+/* Prevent text selection on UI elements (keep on inputs) */
+button, label, span, div, p, h1, h2, h3, h4 {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 80px; /* space for nav */
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-gold { color: var(--accent-gold); }
+.text-secondary { color: var(--text-secondary); }
+
+.glow-gold { box-shadow: 0 0 30px rgba(246, 177, 94, 0.15); border: 1px solid rgba(246, 177, 94, 0.3); }
+.glow-red { box-shadow: 0 0 30px rgba(255, 91, 113, 0.15); border: 1px solid rgba(255, 91, 113, 0.3); }
+.glow-blue { box-shadow: 0 0 30px rgba(113, 128, 255, 0.15); border: 1px solid rgba(113, 128, 255, 0.3); }
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--accent-gold);
+  color: #111;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  background-color: var(--nav-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 2px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  z-index: 9999;
+}
+
+.nav-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-icon.active {
+  box-shadow: 0 0 15px rgba(246, 177, 94, 0.2);
+}
+
+.nav-icon:not(.active) svg {
+  stroke: var(--text-secondary);
+}
+
+.nav-icon.active svg {
+  stroke: var(--accent-gold);
+}
+
+.bg-dark {
+  background-color: #111;
+}
+
+.bg-accent {
+  background-color: var(--accent-gold);
+}

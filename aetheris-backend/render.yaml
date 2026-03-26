@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: aetheris-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        scope: build
+      - key: SESSION_SECRET
+        scope: build
+      - key: CLIENT_URL
+        value: https://aetheris.netlify.app
+      - key: GOOGLE_CLIENT_ID
+        scope: build
+      - key: GOOGLE_CLIENT_SECRET
+        scope: build
