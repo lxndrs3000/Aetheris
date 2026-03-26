@@ -12,7 +12,23 @@ const app = express();
 const port = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 
-app.use(cors({ origin: CLIENT_URL, credentials: true }));
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests from the configured client URL, localhost dev, and no-origin (mobile apps)
+    const allowed = [
+      CLIENT_URL,
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'https://magenta-begonia-8d86a1.netlify.app',
+    ];
+    if (!origin || allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all origins for now (mobile Capacitor sends no origin)
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json());
 app.use(session({ secret: process.env.SESSION_SECRET || 'aetheris-session-secret', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());

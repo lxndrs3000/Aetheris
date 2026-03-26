@@ -19,6 +19,7 @@ const LOCAL_GOALS_KEY = 'aetheris_goals';
 
 function App() {
   const [currentTab, setCurrentTab] = useState<'home' | 'tree' | 'stats' | 'add'>('home');
+  const hasAutoDefaulted = useRef(false);
   const [isDailyOverview, setIsDailyOverview] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
@@ -134,10 +135,11 @@ function App() {
   const handleTabChange = (tab: 'home' | 'tree' | 'stats' | 'add') => {
     if (tab === 'home') {
       setIsDailyOverview(false);
-      setShowGoalDetail(false);
-      setShowLegacy(false);
       setHomeResetCount(c => c + 1);
     }
+    // Always reset overlays when switching tabs
+    setShowGoalDetail(false);
+    setShowLegacy(false);
     setShowAuth(false);
     setCurrentTab(tab);
   };
@@ -248,6 +250,15 @@ function App() {
       console.error('Failed to load goals after login:', err);
     }
   };
+
+  // Auto-default to 'add' tab if user has no goals at all
+  useEffect(() => {
+    if (!authChecked || hasAutoDefaulted.current) return;
+    hasAutoDefaulted.current = true;
+    if (goals.length === 0) {
+      setCurrentTab('add');
+    }
+  }, [authChecked, goals]);
 
   // Not yet checked auth
   if (!authChecked) {

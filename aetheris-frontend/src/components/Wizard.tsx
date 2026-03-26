@@ -49,10 +49,10 @@ export const Wizard: FC<WizardProps> = ({ onComplete }) => {
       
       {step === 1 && (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
-          <p className="text-secondary text-center" style={{ fontSize: '0.7rem', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '1.2rem' }}>
+          <p className="text-secondary text-center" style={{ fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
             The Genesis
           </p>
-          <div style={{ textAlign: 'center', fontSize: '1.4rem', lineHeight: '2', fontFamily: 'var(--font-serif)', color: activeColor, transition: 'color 0.3s ease' }}>
+          <div style={{ textAlign: 'center', fontSize: '1.7rem', lineHeight: '2.2', fontFamily: 'var(--font-serif)', color: activeColor, transition: 'color 0.3s ease' }}>
             <span>I want to</span><br/>
             <input
               type="text"
@@ -66,8 +66,8 @@ export const Wizard: FC<WizardProps> = ({ onComplete }) => {
               }}
               style={{
                 background: 'transparent', border: 'none', borderBottom: `2px dashed ${activeColor}`,
-                color: '#fff', fontSize: '1.4rem', textAlign: 'center', outline: 'none',
-                fontFamily: 'var(--font-serif)', fontStyle: 'italic', width: '90%', maxWidth: '280px', margin: '0 8px',
+                color: '#fff', fontSize: '1.7rem', textAlign: 'center', outline: 'none',
+                fontFamily: 'var(--font-serif)', fontStyle: 'italic', width: '90%', maxWidth: '300px', margin: '0 8px',
                 transition: 'border-color 0.3s ease'
               }}
             /><br/>
@@ -80,30 +80,30 @@ export const Wizard: FC<WizardProps> = ({ onComplete }) => {
               onChange={(e) => setDeadline(e.target.value)}
               style={{
                 background: 'transparent', border: 'none', borderBottom: `2px dashed ${activeColor}`,
-                color: '#fff', fontSize: '1.4rem', textAlign: 'center', outline: 'none',
-                fontFamily: 'var(--font-serif)', fontStyle: 'italic', width: '60%', maxWidth: '200px', margin: '0 8px',
+                color: '#fff', fontSize: '1.7rem', textAlign: 'center', outline: 'none',
+                fontFamily: 'var(--font-serif)', fontStyle: 'italic', width: '70%', maxWidth: '240px', margin: '0 8px',
                 transition: 'border-color 0.3s ease'
               }}
             />
           </div>
 
           {/* Category selector */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '28px', marginTop: '2rem' }}>
             {CATEGORIES.map(cat => (
-              <div key={cat.type} onClick={() => setGoalType(cat.type)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+              <div key={cat.type} onClick={() => setGoalType(cat.type)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
                 <div style={{
-                  width: '16px', height: '16px', borderRadius: '50%',
+                  width: '20px', height: '20px', borderRadius: '50%',
                   background: goalType === cat.type ? cat.color : 'transparent',
                   border: `1.5px solid ${cat.color}`,
-                  boxShadow: goalType === cat.type ? `0 0 8px ${cat.color}` : 'none',
+                  boxShadow: goalType === cat.type ? `0 0 10px ${cat.color}` : 'none',
                   transition: 'all 0.25s ease'
                 }} />
-                <span style={{ fontSize: '0.5rem', letterSpacing: '1px', textTransform: 'uppercase', color: goalType === cat.type ? cat.color : 'rgba(255,255,255,0.3)', transition: 'color 0.25s ease' }}>{cat.label}</span>
+                <span style={{ fontSize: '0.6rem', letterSpacing: '1.5px', textTransform: 'uppercase', color: goalType === cat.type ? cat.color : 'rgba(255,255,255,0.3)', transition: 'color 0.25s ease' }}>{cat.label}</span>
               </div>
             ))}
           </div>
 
-          <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.55rem', letterSpacing: '0.3px', textAlign: 'center', marginTop: '1.2rem', lineHeight: '1.5', maxWidth: '240px', alignSelf: 'center' }}>
+          <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.6rem', letterSpacing: '0.3px', textAlign: 'center', marginTop: '1.5rem', lineHeight: '1.6', maxWidth: '260px', alignSelf: 'center' }}>
             Aetheris is designed for long-term goals. Set a deadline of at least 1 week.
           </p>
         </div>
@@ -111,10 +111,10 @@ export const Wizard: FC<WizardProps> = ({ onComplete }) => {
 
       {step === 2 && (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', alignItems: 'center' }}>
-          <h1 className="serif text-center" style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: activeColor, transition: 'color 0.3s ease' }}>
+          <h1 className="serif text-center" style={{ fontSize: '1.5rem', marginBottom: '1rem', color: activeColor, transition: 'color 0.3s ease' }}>
             Set your first weekly routine
           </h1>
-          <p className="text-secondary text-center" style={{ fontSize: '0.7rem', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '2rem', maxWidth: '280px' }}>
+          <p className="text-secondary text-center" style={{ fontSize: '0.75rem', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '2rem', maxWidth: '300px' }}>
             Habits are the seeds of transformation.
           </p>
           

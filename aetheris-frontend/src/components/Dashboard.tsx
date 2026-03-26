@@ -46,7 +46,6 @@ export const Dashboard: FC<DashboardProps> = ({ goals, isDailyOverview, setIsDai
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
-  const [timeFormat, setTimeFormat] = useState(localStorage.getItem('aetheris_timeFormat') || '24h');
   const [weekStart, setWeekStart] = useState(localStorage.getItem('aetheris_weekStart') || 'Monday');
   const containerRef = useRef<HTMLDivElement>(null);
   const bubblesRef = useRef<Map<string, BubbleState>>(new Map());
@@ -64,7 +63,6 @@ export const Dashboard: FC<DashboardProps> = ({ goals, isDailyOverview, setIsDai
     setConfirmDeleteId(null);
   }, [homeResetCount]);
 
-  const handleTimeFormatChange = (val: string) => { setTimeFormat(val); localStorage.setItem('aetheris_timeFormat', val); };
   const handleWeekStartChange = (val: string) => { setWeekStart(val); localStorage.setItem('aetheris_weekStart', val); };
 
   const stars = useMemo(() => Array.from({ length: 80 }, (_, i) => ({
@@ -406,13 +404,6 @@ export const Dashboard: FC<DashboardProps> = ({ goals, isDailyOverview, setIsDai
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span className="text-primary" style={{ fontSize: '1.1rem' }}>Time Format</span>
-              <div style={{ display: 'flex', gap: '10px', background: 'var(--card-bg)', padding: '5px', borderRadius: '15px' }}>
-                <button onClick={() => handleTimeFormatChange('12h')} style={{ background: timeFormat === '12h' ? 'var(--accent-gold)' : 'transparent', color: timeFormat === '12h' ? '#000' : 'var(--text-secondary)', border: 'none', padding: '5px 15px', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s' }}>12h</button>
-                <button onClick={() => handleTimeFormatChange('24h')} style={{ background: timeFormat === '24h' ? 'var(--accent-gold)' : 'transparent', color: timeFormat === '24h' ? '#000' : 'var(--text-secondary)', border: 'none', padding: '5px 15px', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s' }}>24h</button>
-              </div>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span className="text-primary" style={{ fontSize: '1.1rem' }}>Week Starts On</span>
               <div style={{ display: 'flex', gap: '10px', background: 'var(--card-bg)', padding: '5px', borderRadius: '15px' }}>
                 <button onClick={() => handleWeekStartChange('Monday')} style={{ background: weekStart === 'Monday' ? 'var(--accent-gold)' : 'transparent', color: weekStart === 'Monday' ? '#000' : 'var(--text-secondary)', border: 'none', padding: '5px 15px', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.2s' }}>Mon</button>
@@ -563,31 +554,32 @@ export const Dashboard: FC<DashboardProps> = ({ goals, isDailyOverview, setIsDai
                 Your intentions are stars in the void. Watch them burn brighter as they reach fulfillment.
               </p>
             </div>
-            <button 
+            <button
               onClick={() => setIsDailyOverview(true)}
               style={{
                 background: 'rgba(0,0,0,0.4)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(246, 177, 94, 0.3)',
-                borderRadius: '40px',
-                padding: '12px 28px',
+                borderRadius: '50%',
+                width: '42px',
+                height: '42px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px',
+                justifyContent: 'center',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
                 color: 'var(--accent-gold)',
-                marginTop: '15px'
+                marginTop: '15px',
+                padding: 0,
               }}
               onMouseOver={(e) => e.currentTarget.style.border = '1px solid rgba(246, 177, 94, 0.6)'}
               onMouseOut={(e) => e.currentTarget.style.border = '1px solid rgba(246, 177, 94, 0.3)'}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 <path d="M16 7l-5 5 5 5" />
               </svg>
-              <span className="serif" style={{ fontSize: '1.1rem', fontStyle: 'italic', letterSpacing: '0.5px' }}>Weekly View</span>
             </button>
           </div>
           
@@ -756,26 +748,28 @@ export const Dashboard: FC<DashboardProps> = ({ goals, isDailyOverview, setIsDai
                 Nurture the seeds of your intent. Every action is a star forming in the quiet void.
               </p>
             </div>
-            <button 
+            <button
               onClick={() => setIsDailyOverview(false)}
               style={{
                 background: 'rgba(0,0,0,0.4)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(246, 177, 94, 0.3)',
-                borderRadius: '40px',
-                padding: '12px 28px',
+                borderRadius: '50%',
+                width: '42px',
+                height: '42px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px',
+                justifyContent: 'center',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
                 color: 'var(--accent-gold)',
-                marginTop: '15px'
+                marginTop: '15px',
+                padding: 0,
               }}
               onMouseOver={(e) => e.currentTarget.style.border = '1px solid rgba(246, 177, 94, 0.6)'}
               onMouseOut={(e) => e.currentTarget.style.border = '1px solid rgba(246, 177, 94, 0.3)'}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="3" />
                 <path d="M3 12c0 9 9 9 9 9" />
                 <path d="M21 12c0-9-9-9-9-9" />
@@ -783,7 +777,6 @@ export const Dashboard: FC<DashboardProps> = ({ goals, isDailyOverview, setIsDai
                 <path d="M12 3c9 0 9 9 9 9" />
                 <path d="M12 8c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" />
               </svg>
-              <span className="serif" style={{ fontSize: '1.1rem', fontStyle: 'italic', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>Orbit View</span>
             </button>
           </div>
 
