@@ -43,9 +43,6 @@ export const Auth: FC<AuthProps> = ({ onAuth, onClose }) => {
     }
   };
 
-  const handleGoogle = () => {
-    window.location.href = 'http://localhost:3000/auth/google';
-  };
 
   return (
     <div style={{

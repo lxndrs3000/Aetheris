@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:3000';
+const BASE = import.meta.env.DEV ? 'http://localhost:3000' : 'https://aetheris-api-yjyw.onrender.com';
 
 export const apiFetch = (path: string, options: RequestInit = {}): Promise<Response> => {
   const token = localStorage.getItem('aetheris_token');
