@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose-driven UI; the Activity only needs a Material base theme. -->
+    <style name="Theme.EInkMode" parent="android:Theme.Material.NoActionBar" />
+</resources>
